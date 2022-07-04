@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import "./index.scss";
 
+//Apollo client for graphQL queries for pokemons
 const client = new ApolloClient({
   uri: "https://beta.pokeapi.co/graphql/v1beta",
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
@@ -16,4 +18,3 @@ root.render(
     </ApolloProvider>
   </React.StrictMode>
 );
-

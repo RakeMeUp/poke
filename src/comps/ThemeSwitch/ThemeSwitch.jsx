@@ -1,6 +1,14 @@
+import {useContext} from 'react'
+import { themeContext } from '../../App'
+
 function ThemeSwitch() {
+  let {theme, setTheme} = useContext(themeContext)
+  let handleClick=()=>{
+    setTheme(theme==='light' ? 'dark':'light')
+  }
+
   return (
-    <div>ThemeSwitch</div>
+    <button className="nav-button" onClick={handleClick}>Theme</button>
   )
 }
 

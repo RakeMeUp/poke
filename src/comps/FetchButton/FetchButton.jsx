@@ -1,14 +1,21 @@
-import { useContext, useState } from "react"
-import { cardsContext } from "../../App"
+import { useContext, useState} from "react"
+import { pokemonsContext } from "../../App"
+import Fetcher from '../../Funcs/Fetcher/Fetcher';
 
 export default function FetchButton() {
-  let {cards, setCards} = useContext(cardsContext)
+  let {pokemons, setPokemons} = useContext(pokemonsContext)
+  let [offset, setOffset] = useState(0)
 
-  const handleClick = () =>{
-    setCards(true)
-  } 
+  //TODO: LOADING, ERROR handle
+  const [,, data] = Fetcher(offset);
+  
+  //TODO: understand why await
+  const handleClick = async () =>{
+    await setPokemons(pokemons.concat(data.pokemon_v2_pokemon))
+    await setOffset(offset+8)
+  }
 
   return (
-    <button onClick={handleClick}>FetchButton</button>
+    <button className="footer-button" onClick={handleClick}>FetchButton</button>
   )
 }
